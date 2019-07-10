@@ -31,7 +31,14 @@ const game = (() => {
 
   let origBoard;
 
-  
+
+
+  const turnClick = (square) => {
+    if (typeof origBoard[square.target.id] == 'number') {
+      turn(square.target.id, gameBoard.huPlayer)
+      if (!checkTie()) turn(bestSpot(), gameBoard.aiPlayer);
+    }
+  }
 
   // startGame();
   const startGame = () => {
