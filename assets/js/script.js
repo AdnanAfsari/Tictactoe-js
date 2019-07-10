@@ -84,6 +84,18 @@ const game = (() => {
     declareWinner(gameWon.player == gameBoard.huPlayer ? "You win!" : "You lose.");
   }
 
+  const declareWinner = (who) => {
+    document.querySelector(".endgame").style.display = "block";
+    document.querySelector(".endgame .text").innerText = who;
+  }
+
+  const emptySquares = () => {
+    return origBoard.filter(s => typeof s == 'number');
+  };
+
+  const bestSpot = () => {
+    return minimax(origBoard, gameBoard.aiPlayer).index;
+  };
 
 
 
