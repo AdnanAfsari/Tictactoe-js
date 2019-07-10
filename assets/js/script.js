@@ -98,6 +98,19 @@ const game = (() => {
   };
 
 
+  const checkTie = () => {
+    if (emptySquares().length == 0) {
+      for (var i = 0; i < gameBoard.cells.length; i++) {
+        gameBoard.cells[i].style.backgroundColor = "green";
+        gameBoard.cells[i].removeEventListener('click', turnClick, false);
+      }
+      declareWinner("Tie Game!")
+      return true;
+    }
+    return false;
+  }
+
+
 
   return {
     startGame
