@@ -20,6 +20,6 @@ Browser
 ## Installation
 > Open your git bash and **cd** to the location you'd like to put your files the run the command below.
 
-`git clone https://github.com/JamesOkunlade/tictactoe-js`
+`git clone https://github.com/AdnanAfsari/Tictactoe-js`
 
 **cd** to into the project folder and open the `index.html` file with your browser
