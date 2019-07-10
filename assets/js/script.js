@@ -73,6 +73,17 @@ const game = (() => {
     return gameWon;
   }
 
+  const gameOver = (gameWon) => {
+    for (let index of gameBoard.winCombos[gameWon.index]) {
+      document.getElementById(index).style.backgroundColor =
+      gameWon.player == gameBoard.huPlayer ? "blue" : "red";
+    }
+    for (var i = 0; i < gameBoard.cells.length; i++) {
+      gameBoard.cells[i].removeEventListener('click', turnClick, false);
+    }
+    declareWinner(gameWon.player == gameBoard.huPlayer ? "You win!" : "You lose.");
+  }
+
 
 
 
