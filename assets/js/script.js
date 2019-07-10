@@ -24,3 +24,37 @@ return {
 };
 
 })();
+
+
+//Module : Game
+const game = (() => {
+
+  let origBoard;
+
+  
+
+  // startGame();
+  const startGame = () => {
+    document.querySelector(".endgame").style.display = "none";
+    origBoard = Array.from(Array(9).keys());
+    for (let i = 0; i < gameBoard.cells.length; i++) {
+      gameBoard.cells[i].innerText = '';
+      gameBoard.cells[i].style.removeProperty('background-color');
+      gameBoard.cells[i].addEventListener('click', turnClick, false);
+    }
+  }
+
+
+
+
+  return {
+    startGame
+  };
+
+})();
+
+
+document.getElementById("btn").addEventListener("click", () => {
+  game.startGame()
+
+});
