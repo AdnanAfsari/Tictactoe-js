@@ -43,6 +43,7 @@ const game = (() => {
   // startGame();
   const startGame = () => {
     document.querySelector(".endgame").style.display = "none";
+
     origBoard = Array.from(Array(9).keys());
     for (let i = 0; i < gameBoard.cells.length; i++) {
       gameBoard.cells[i].innerText = '';
@@ -78,7 +79,7 @@ const game = (() => {
       document.getElementById(index).style.backgroundColor =
       gameWon.player == gameBoard.huPlayer ? "blue" : "red";
     }
-    for (var i = 0; i < gameBoard.cells.length; i++) {
+    for (let i = 0; i < gameBoard.cells.length; i++) {
       gameBoard.cells[i].removeEventListener('click', turnClick, false);
     }
     declareWinner(gameWon.player == gameBoard.huPlayer ? "You win!" : "You lose.");
@@ -100,7 +101,7 @@ const game = (() => {
 
   const checkTie = () => {
     if (emptySquares().length == 0) {
-      for (var i = 0; i < gameBoard.cells.length; i++) {
+      for (let i = 0; i < gameBoard.cells.length; i++) {
         gameBoard.cells[i].style.backgroundColor = "green";
         gameBoard.cells[i].removeEventListener('click', turnClick, false);
       }
@@ -112,7 +113,7 @@ const game = (() => {
 
 
   const minimax = (newBoard, player) => {
-  	var availSpots = emptySquares();
+  	let availSpots = emptySquares();
 
   	if (checkWin(newBoard, gameBoard.huPlayer)) {
   		return {score: -10};
@@ -121,17 +122,19 @@ const game = (() => {
   	} else if (availSpots.length === 0) {
   		return {score: 0};
   	}
-  	var moves = [];
-  	for (var i = 0; i < availSpots.length; i++) {
-  		var move = {};
+
+  	let moves = [];
+
+  	for (let i = 0; i < availSpots.length; i++) {
+  		let move = {};
   		move.index = newBoard[availSpots[i]];
   		newBoard[availSpots[i]] = player;
 
   		if (player == gameBoard.aiPlayer) {
-  			var result = minimax(newBoard, gameBoard.huPlayer);
+  			let result = minimax(newBoard, gameBoard.huPlayer);
   			move.score = result.score;
   		} else {
-  			var result = minimax(newBoard, gameBoard.aiPlayer);
+  			let result = minimax(newBoard, gameBoard.aiPlayer);
   			move.score = result.score;
   		}
 
@@ -140,18 +143,18 @@ const game = (() => {
   		moves.push(move);
   	}
 
-  	var bestMove;
+  	let bestMove;
   	if(player === gameBoard.aiPlayer) {
-  		var bestScore = -10000;
-  		for(var i = 0; i < moves.length; i++) {
+  		let bestScore = -10000;
+  		for(let i = 0; i < moves.length; i++) {
   			if (moves[i].score > bestScore) {
   				bestScore = moves[i].score;
   				bestMove = i;
   			}
   		}
   	} else {
-  		var bestScore = 10000;
-  		for(var i = 0; i < moves.length; i++) {
+  		let bestScore = 10000;
+  		for(let i = 0; i < moves.length; i++) {
   			if (moves[i].score < bestScore) {
   				bestScore = moves[i].score;
   				bestMove = i;
